@@ -8,3 +8,14 @@ export const calculateFileHash = async (file: File): Promise<string> => {
     .join("");
   return hashHex;
 };
+
+// 文件切割
+export const createChunks = (file: File, chunkSize: number = 2 * 1024) => {
+  const chunks: Blob[] = [];
+  let cur = 0;
+  while (cur < file.size) {
+    chunks.push(file.slice(cur, cur + chunkSize));
+    cur += chunkSize;
+  }
+  return chunks;
+};

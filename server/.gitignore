@@ -2,7 +2,7 @@
 node_modules/
 
 # 环境变量
-.env
+# .env
 
 # 上传目录（用户文件，通常不应上传）
 uploads/
