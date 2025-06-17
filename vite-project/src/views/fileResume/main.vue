@@ -30,7 +30,7 @@ const handleFileChange = (event: Event) => {
                 alert("文件已存在，秒传成功");
               } else {
                 const formData = new FormData();
-                formData.append("file", file.value);
+                formData.append("file", file.value!);
                 formData.append("hash", hash);
                 fetch("http://localhost:3000/api/upload", {
                   method: "POST",
