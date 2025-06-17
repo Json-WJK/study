@@ -18,6 +18,29 @@ const handleFileChange = (event: Event) => {
     console.log("选择的文件:", file.value);
     calculateFileHash(file.value).then((hash) => {
       console.log("文件哈希值:", hash);
+      // 检查哈希值是否已存在
+      fetch(`http://localhost:3000/api/check-hash?hash=${hash}`).then(
+        (response) => {
+          if (response.ok) {
+            console.log("response:", response);
+            response.json().then((data) => {
+              console.log("data:", data);
+              if (data.exists) {
+                console.log("文件已存在，秒传成功");
+                alert("文件已存在，秒传成功");
+              } else {
+                const formData = new FormData();
+                formData.append("file", file.value);
+                formData.append("hash", hash);
+                fetch("http://localhost:3000/api/upload", {
+                  method: "POST",
+                  body: formData,
+                });
+              }
+            });
+          }
+        }
+      );
     });
   }
 };

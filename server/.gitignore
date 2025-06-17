@@ -1,0 +1,28 @@
+# Node.js 依赖
+node_modules/
+
+# 环境变量
+.env
+
+# 上传目录（用户文件，通常不应上传）
+uploads/
+hashes/
+
+# 日志文件
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 编辑器/操作系统相关
+.DS_Store
+Thumbs.db
+
+# VSCode 工作区配置（可选）
+.vscode/
+
+# build 或 dist 目录（如果你用 Vite 构建前端）
+dist/
+build/
+
+# 如果用 nodemon 自动重启开发服务
+*.swp
