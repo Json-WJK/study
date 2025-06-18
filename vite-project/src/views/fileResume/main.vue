@@ -36,14 +36,14 @@ const checkFileHash = (file: File) => {
             if (data.exists) {
               console.log("文件已存在，秒传成功");
             } else {
-              uploadFile(file, hash);
-              // createChunks(file).forEach((chunk, index) => {
-              //   const chunkHash: string = `${hash}-${index}`;
-              //   console.log(`上传分片 ${index + 1} 的哈希值:`, chunkHash);
-              //   uploadChunk(new File([chunk], `${chunkHash}`)).then(() => {
-              //     console.log(`分片 ${index + 1} 上传成功`);
-              //   });
-              // });
+              // uploadFile(file, hash);
+              createChunks(file).forEach((chunk, index) => {
+                const chunkHash: string = `${hash}-${index}`;
+                console.log(`上传分片 ${index + 1} 的哈希值:`, chunkHash);
+                uploadChunk(new File([chunk], `${chunkHash}`)).then(() => {
+                  console.log(`分片 ${index + 1} 上传成功`);
+                });
+              });
             }
           });
         }
